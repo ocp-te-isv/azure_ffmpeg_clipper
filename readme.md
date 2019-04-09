@@ -4,7 +4,7 @@ Clip and upload to azure storage using ffmpeg.
 
 The initial solution used a simple docker image with ffmpeg and AzCopy, with the purpose of creating a short clip of a video from a source URL, a feature which is currently not supported in Azure Media Services (which requires a local asset in Azure Media Services asset storage).
 
-This was then deployed and orchestrated using a simple java app and Azure Container Instances to provide a simple scalable solution.
+This was then deployed and orchestrated using a simple java app and [Azure Container Instances](https://azure.microsoft.com/en-us/services/container-instances/) to provide a simple scalable solution.
 
 However, the solution needed to be able to create clips as fast as possible as part of a user workflow, so we switched from ACI to use a custom docker image and Azure Function.
 The start up time for our container instance, at the time of writing this documentation was around 30 - 45 Seconds for a 350 MB image.
@@ -22,7 +22,7 @@ Provide metrics for analytics.
 ## Azure Function Docker Container
 
 Azure Function Project and Dockerfile found in this repo, under **./Azure_function/**
-
+We used the process for [creating a customized Linux container](https://docs.microsoft.com/en-us/azure/azure-functions/functions-create-function-linux-custom-image) for the function, in order to be able to install and use Ffmpeg.
 ### Build
 
 1. install docker
