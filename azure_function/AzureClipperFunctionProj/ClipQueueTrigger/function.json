@@ -1,0 +1,26 @@
+{
+  "disabled": false,
+  "bindings": [
+    {
+      "name": "myQueueItem",
+      "type": "queueTrigger",
+      "direction": "in",
+      "queueName": "clip-queue-items",
+      "connection": "MyStorageConnectionAppSetting"
+    },
+    {
+      "name": "myOutputBlob",
+      "type": "blob",
+      "path": "clips/{fileName}",
+      "connection": "MyStorageConnectionAppSetting",
+      "direction": "out"
+    },
+    {
+      "name": "myOutputQueue",
+      "type": "queue",
+      "direction": "out",
+      "queueName": "clip-out-queue",
+      "connection": "MyStorageConnectionAppSetting"
+    }
+  ]
+}
