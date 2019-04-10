@@ -34,7 +34,7 @@ module.exports = async function (context, req) {
                         status: 404,
                         body: "Failed to find file " + fileName
                     }
-                    context.log.metric("clipper_func, execution_time_failure, " (new Date() - start));
+                    context.log("clipper_func, execution_time_failure, " + (new Date() - start));
                     reject("did not find file to upload");
                 }
             })
@@ -48,14 +48,14 @@ module.exports = async function (context, req) {
                         + "\n" + (req.query.duration || req.body.duration)
                         + "\n" + (req.query.fileName || req.body.fileName)
                 };
-                context.log.metric("clipper_func, execution_time_ffmpegerror, " + (new Date() - start));
+                context.log("clipper_func, execution_time_ffmpegerror, " + (new Date() - start));
                 reject('ffmpeg error : ' + ffmpegOut);
             })
         }
         else {
             context.res = {
                 status: 400,
-                body: "Please pass correct params to function"
+                body: "clipper_func, Please pass correct params to function"
             };
             reject();
         }
